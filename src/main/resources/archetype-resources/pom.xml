@@ -2,24 +2,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>${groupId}</groupId>
-    <artifactId>${artifactId}</artifactId>
-    <version>${version}</version>
-    <packaging>jar</packaging>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/> <!-- remove this line on microservice when is a service -->
     </parent>
 
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
+
+    <packaging>jar</packaging> <!-- remove this line on microservice when is a service -->
+
+    <!-- remove those properties on microservice when is a service if not needed-->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>21</java.version>
     </properties>
 
+    <!-- remove those dependencies on microservice when is a service if not needed-->
     <dependencies>
         <dependency>
             <groupId>junit</groupId>

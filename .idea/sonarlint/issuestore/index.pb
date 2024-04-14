@@ -20,9 +20,3 @@ Ssrc/main/resources/archetype-resources/src/main/resource/application-dev.proper
 _src/main/resources/archetype-resources/src/main/resources/__property-file-name-dev__.properties,7\2\7211735b3943780308e4b3c06d730d4094da4c62
 ê
 `src/main/resources/archetype-resources/src/main/resources/__property-file-name-prod__.properties,f\2\f20414f60233d81d747a632b511783fa592d188a
-ã
-[src/main/resources/archetype-resources/src/test/java/__capitalized-project-name__Tests.java,b\4\b4d29082a56909fe74216932604a428b889a61f1
-ë
-asrc/main/resources/archetype-resources/src/main/java/__capitalized-project-name__Application.java,8\9\89674c4db69dc1b32f9a010bfaec2072913d3336
-ï
-esrc/main/resources/archetype-resources/src/test/java/__capitalized-project-name__ApplicationTest.java,f\e\fee60cbe95e871978c476106a49eef1999d90309

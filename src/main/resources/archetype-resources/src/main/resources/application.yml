@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: ${artifactid}
+  jackson:
+    default-property-inclusion: non_null
+    property-naming-strategy: SNAKE_CASE
+
+#For PostgreSQL
+#  datasource:
+#    url: ${DB_HOST}
+#    username: ${DB_USER}
+#    password: ${DB_PASSWORD}
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: create
+
+#For MYSQL
+#  datasource:
+#    url: ${DB_HOST}
+#    username: ${DB_USER}
+#    password: ${DB_PASSWORD}
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    database-platform: org.hibernate.dialect.MySQLDialect
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: create
+
+logging:
+  level:
+    org.hibernate.SQL: debug
