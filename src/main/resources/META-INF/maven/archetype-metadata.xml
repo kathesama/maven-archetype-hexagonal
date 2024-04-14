@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor name="basic">
+    <requiredProperties>
+        <requiredProperty key="property-file-name-qa">
+            <defaultValue>application-qa</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="property-file-name-dev">
+            <defaultValue>application-dev</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="property-file-name-prod">
+            <defaultValue>application-prod</defaultValue>
+        </requiredProperty>
+
+        <!--JUnit version to use in generated project -->
+        <requiredProperty key="junit-version">
+            <defaultValue>4.10</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classPrefix" >
+            <defaultValue>
+                ${artifactId.substring(0,1).toUpperCase()}${artifactId.substring(1)}
+            </defaultValue>
+        </requiredProperty>
+    </requiredProperties>
+
+    <fileSets>
+        <fileSet filtered="true">
+            <directory>src/main/resources</directory>
+
+            <includes>
+                <include>*.txt</include>
+                <include>*.properties</include>
+            </includes>
+            <excludes>
+                <exclude>**/*.xml</exclude>
+            </excludes>
+        </fileSet>
+
+        <fileSet filtered="true" packaged="true">
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.java</include>
+                <include>**/*.gitkeep</include>
+            </includes>
+        </fileSet>
+
+        <fileSet filtered="true" packaged="true">
+            <directory>src/test/java</directory>
+        </fileSet>
+
+    </fileSets>
+</archetype-descriptor>
