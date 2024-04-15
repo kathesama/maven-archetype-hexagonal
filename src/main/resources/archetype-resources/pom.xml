@@ -9,25 +9,25 @@
         <relativePath/> <!-- remove this line on microservice when is a service -->
     </parent>
 
-    <groupId>${groupId}</groupId>
+    <groupId>${groupId}</groupId> <!-- remove this line on microservice when is a service -->
+    <version>${version}</version> <!-- remove this line on microservice when is a service -->
     <artifactId>${artifactId}</artifactId>
-    <version>${version}</version>
 
     <packaging>jar</packaging> <!-- remove this line on microservice when is a service -->
 
-    <!-- remove those properties on microservice when is a service if not needed-->
+    <!-- remove those properties on microservice when is a service or if not needed-->
     <properties>
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>21</java.version>
+        <mockito.version>4.3.1</mockito.version>
     </properties>
 
-    <!-- remove those dependencies on microservice when is a service if not needed-->
+    <!-- remove those dependencies on microservice when is a service or if not needed-->
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

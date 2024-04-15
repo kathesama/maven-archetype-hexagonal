@@ -10,16 +10,12 @@
         <requiredProperty key="property-file-name-prod">
             <defaultValue>application-prod</defaultValue>
         </requiredProperty>
-
-        <!--JUnit version to use in generated project -->
-        <requiredProperty key="junit-version">
-            <defaultValue>4.10</defaultValue>
-        </requiredProperty>
         <requiredProperty key="classPrefix" >
             <defaultValue>
-                ${artifactId.substring(0,1).toUpperCase()}${artifactId.substring(1)}
+                ${artifactId.replace("-", "").substring(0,1).toUpperCase()}${artifactId.replace("-", "").substring(1)}
             </defaultValue>
         </requiredProperty>
+
     </requiredProperties>
 
     <fileSets>
@@ -29,6 +25,7 @@
             <includes>
                 <include>*.txt</include>
                 <include>*.properties</include>
+                <include>*.yml</include>
             </includes>
             <excludes>
                 <exclude>**/*.xml</exclude>
