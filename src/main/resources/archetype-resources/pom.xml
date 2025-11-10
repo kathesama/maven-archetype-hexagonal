@@ -2,33 +2,159 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!--
+      SPRING BOOT PARENT DEFINITION
+      This section declares the Spring Boot starter parent.
+
+      - Keep this block if the generated project is STANDALONE.
+      - Remove this block entirely if the service belongs to a MONOREPO
+        or has its own corporate parent (e.g. core-microservices).
+
+      .- An empty <relativePath/> means this project acts as the ROOT of the Maven hierarchy.
+         Maven will not look for any parent pom.xml above this directory.
+      .- Child modules within a multi-module project must reference their parent explicitly
+         instead of this Spring Boot parent.
+    -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.4</version>
-        <relativePath/> <!-- remove this line on microservice when is a service -->
+        <relativePath/>
     </parent>
 
-    <groupId>${groupId}</groupId> <!-- remove this line on microservice when is a service -->
-    <version>${version}</version> <!-- remove this line on microservice when is a service -->
+    <groupId>${groupId}</groupId> <!-- remove this line on microservice when it’s part of a service module -->
+    <version>${version}</version> <!-- remove this line on microservice when it’s part of a service module -->
     <artifactId>${artifactId}</artifactId>
+    <name>${artifactId}</name>
+    <description>Hexagonal microservice generated from maven-archetype-hexagonal</description>
 
-    <packaging>jar</packaging> <!-- remove this line on microservice when is a service -->
+    <packaging>jar</packaging> <!-- remove this line on microservice when it’s part of a service module -->
 
-    <!-- remove those properties on microservice when is a service or if not needed-->
+    <!--
+      PROJECT PROPERTIES
+      These properties are included for standalone services.
+      If the project inherits from a corporate parent (e.g. core-microservices),
+      remove any properties already defined in that parent to avoid duplication
+      (e.g. Java version, Lombok, MapStruct, encoding).
+    -->
     <properties>
         <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <mockito.version>4.3.1</mockito.version>
+
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <lombok.version>1.18.34</lombok.version>
     </properties>
 
-    <!-- remove those dependencies on microservice when is a service or if not needed-->
+    <!--
+      DEPENDENCIES
+      This set of dependencies is designed for standalone microservices.
+
+      - If your corporate parent already provides these common starters
+        (e.g. web, validation, data-jpa, actuator, test),
+        remove them here to prevent redundancy.
+
+      - Do NOT add mockito-core manually;
+        it is already included transitively via spring-boot-starter-test.
+    -->
     <dependencies>
+        <!-- Web MVC (change to spring-boot-starter-webflux if required) -->
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- DTO validation -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- Basic persistence -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- MapStruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+
+        <!-- Actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!--
+          NOTE:
+          Do not include mockito-core directly.
+          spring-boot-starter-test already provides it by default.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <!--
+        BUILD CONFIGURATION
+        The compiler and Spring Boot plugins below ensure the project builds correctly
+        when used standalone.
+
+        - If the parent POM already manages these plugins or annotation processors
+          (for Lombok / MapStruct), remove this section from the child to avoid conflicts.
+    -->
+    <build>
+        <plugins>
+            <!--
+              NOTE:
+              This block defines compilation with annotation processors (Lombok + MapStruct).
+              If the parent already manages it, remove it here.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <!-- Spring Boot plugin -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

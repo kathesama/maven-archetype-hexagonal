@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archetype-descriptor name="basic">
+<archetype-descriptor
+        name="maven-archetype-hexagonal"
+        xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
+>
     <requiredProperties>
         <requiredProperty key="property-file-name-qa">
             <defaultValue>application-qa</defaultValue>

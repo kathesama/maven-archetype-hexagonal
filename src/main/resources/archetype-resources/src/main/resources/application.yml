@@ -5,6 +5,13 @@ spring:
     default-property-inclusion: non_null
     property-naming-strategy: SNAKE_CASE
 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
 #For PostgreSQL
 #  datasource:
 #    url: ${DB_HOST}
